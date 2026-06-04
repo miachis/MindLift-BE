@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ path: "./src/.env" });
 import express from "express";
 
 import otpRouter from "./otp/otpRouter.js";
