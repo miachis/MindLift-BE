@@ -18,3 +18,11 @@ model Otp {
   email  String @unique
   expiry BigInt
 }
+
+model Users {
+  id        Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String  @unique
+  Password  String?
+}
