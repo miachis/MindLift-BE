@@ -26,7 +26,7 @@ class Otp {
 		return otp;
 	}
 
-	async #sendOtp(email: string): Promise<boolean> {
+	async sendOtp(email: string): Promise<boolean> {
 		const otp: string = this.#generateOtp();
 
 		try {
@@ -54,7 +54,6 @@ class Otp {
 
 			return true;
 		} catch (err) {
-			console.error(err);
 			return false;
 		}
 	}
@@ -103,7 +102,7 @@ class Otp {
 		res: Response,
 	) => {
 		const { userEmail } = req.body;
-		const result = await this.#sendOtp(userEmail);
+		const result = await this.sendOtp(userEmail);
 		if (result) {
 			return res.status(200).send({ success: true });
 		}
