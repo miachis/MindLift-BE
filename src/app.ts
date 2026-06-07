@@ -3,7 +3,7 @@ dotenv.config({ path: "./src/.env" });
 import express from "express";
 
 import otpRouter from "./otp/otpRouter.js";
-import signupRouter from "./signup/singupRouter.js";
+import signupRouter from "./signup/signUpRouter.js";
 
 const app = express();
 app.use(express.json());
