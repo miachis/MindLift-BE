@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 
 class Otp {
 	#transporter = nodemailer.createTransport({
@@ -114,9 +115,13 @@ class Otp {
 		res: Response,
 	) => {
 		const { otp, userEmail } = req.body;
-		const result = await this.#verifyOtp(otp, userEmail);
+		const result: boolean = await this.#verifyOtp(otp, userEmail);
 		if (result) {
-			return res.status(200).send({ success: true });
+			const payload = { email: userEmail };
+			const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`, {
+				expiresIn: "30d",
+			});
+			return res.status(200).send({ success: true, accessToken: token });
 		}
 		res.status(401).send({ success: false });
 	};

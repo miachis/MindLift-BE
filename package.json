@@ -3,9 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "app.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"scripts": {},
 	"keywords": [],
 	"author": "Miachi Solomon",
 	"license": "ISC",
@@ -16,10 +14,12 @@
 		"@types/express": "^5.0.6",
 		"dotenv": "^17.4.2",
 		"express": "^5.2.1",
+		"jsonwebtoken": "^9.0.3",
 		"nodemailer": "^8.0.10",
 		"pg": "^8.21.0"
 	},
 	"devDependencies": {
+		"@types/jsonwebtoken": "^9.0.10",
 		"@types/node": "^25.9.1",
 		"@types/nodemailer": "^8.0.0",
 		"@types/pg": "^8.20.0",
