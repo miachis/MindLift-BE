@@ -20,7 +20,7 @@ class SignUp {
 		});
 
 		if (user) {
-			return res.status(403).send({ success: false });
+			return res.status(403).json({ success: false });
 		}
 
 		await prisma.users.create({
@@ -34,9 +34,14 @@ class SignUp {
 		const emailSent: boolean = await otpController.sendOtp(userEmail);
 
 		if (emailSent) {
-			return res.status(200).send({ success: true });
+			await prisma.users.update({
+				where: { email: userEmail },
+				data: { isVerified: true },
+			});
+			return res.status(200).json({ success: true });
 		} else {
-			return res.status(500).send({ success: false });
+			// if email isnt sent the user still gets an account but it will be an inactive account
+			return res.status(200).json({ success: true });
 		}
 	}
 }

@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 class Otp {
 	#transporter = nodemailer.createTransport({
@@ -47,10 +48,11 @@ class Otp {
 			// updating the otp, if it exists,
 			// Or creating a new entry in the database if it doesn't exist
 
+			const hashedOtp = await bcrypt.hash(otp, 10);
 			await prisma.otp.upsert({
 				where: { email },
-				update: { otp, expiry: expiryTime },
-				create: { otp, email, expiry: expiryTime },
+				update: { otp: hashedOtp, expiry: expiryTime },
+				create: { otp: hashedOtp, email, expiry: expiryTime },
 			});
 
 			return true;
@@ -65,19 +67,20 @@ class Otp {
 		 * Make sure otp isnt expired
 		 * If the user inputted otp matches the one from the database, grant access
 		 */
-		const savedOtp = await prisma.otp.findUnique({
+		const savedEntry = await prisma.otp.findUnique({
 			where: { email },
 		});
 
-		if (!savedOtp) {
+		if (!savedEntry) {
 			return false;
 		}
 
-		if (savedOtp.otp !== otp) {
+		const match = await bcrypt.compare(otp, savedEntry.otp);
+		if (!match) {
 			return false;
 		}
 
-		if (Date.now() > savedOtp.expiry) {
+		if (Date.now() > savedEntry.expiry) {
 			// otp has expired
 			await prisma.otp.delete({
 				where: { email },
@@ -105,9 +108,9 @@ class Otp {
 		const { userEmail } = req.body;
 		const result = await this.sendOtp(userEmail);
 		if (result) {
-			return res.status(200).send({ success: true });
+			return res.status(200).json({ success: true });
 		}
-		res.status(500).send({ success: false });
+		res.status(500).json({ success: false });
 	};
 
 	verifyRequestHandler = async (
@@ -121,9 +124,9 @@ class Otp {
 			const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`, {
 				expiresIn: "30d",
 			});
-			return res.status(200).send({ success: true, accessToken: token });
+			return res.status(200).json({ success: true, accessToken: token });
 		}
-		res.status(401).send({ success: false });
+		res.status(401).json({ success: false });
 	};
 }
 
