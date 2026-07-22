@@ -1,6 +1,8 @@
 import { type Request, type Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import otpController from "../otp/ClassOtp.js";
+import { validationResult } from "express-validator";
+import sendAccessAndRefreshTokens from "../utility/jwtTokens.js";
 
 class SignUp {
 	async signup(
@@ -11,37 +13,53 @@ class SignUp {
 		>,
 		res: Response,
 	) {
-		const { firstName, lastName, userEmail } = req.body;
+		const result = validationResult(req);
+		if (result.isEmpty()) {
+			const { firstName, lastName, userEmail } = req.body;
 
-		const user = await prisma.users.findUnique({
-			where: {
-				email: userEmail,
-			},
-		});
-
-		if (user) {
-			return res.status(403).json({ success: false });
-		}
-
-		await prisma.users.create({
-			data: {
-				firstName: firstName,
-				lastName: lastName,
-				email: userEmail,
-			},
-		});
-
-		const emailSent: boolean = await otpController.sendOtp(userEmail);
-
-		if (emailSent) {
-			await prisma.users.update({
-				where: { email: userEmail },
-				data: { isVerified: true },
+			const user = await prisma.users.findUnique({
+				where: {
+					email: userEmail,
+				},
 			});
-			return res.status(200).json({ success: true });
+
+			if (user) {
+				return res
+					.status(403)
+					.json({ success: false, message: "Email is taken" });
+			}
+
+			await prisma.users.create({
+				data: {
+					firstName: firstName,
+					lastName: lastName,
+					email: userEmail,
+				},
+			});
+
+			const emailSent: boolean = await otpController.sendOtp(userEmail);
+
+			if (emailSent) {
+				return res.status(200).json({
+					success: true,
+					isEmailSent: true,
+					message: "OTP sent successfully",
+				});
+			} else {
+				// if email isnt sent the user still gets an account but it will be an unverified account
+				sendAccessAndRefreshTokens(userEmail, res);
+				return res.status(200).json({
+					success: true,
+					isEmailSent: false,
+					message: "OTP failed to send",
+				});
+			}
 		} else {
-			// if email isnt sent the user still gets an account but it will be an inactive account
-			return res.status(200).json({ success: true });
+			return res.status(400).json({
+				success: false,
+				errors: result.array(),
+				message: "A validation error occured",
+			});
 		}
 	}
 }

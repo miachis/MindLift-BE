@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
+import sendAccessAndRefreshTokens from "../utility/jwtTokens.js";
 import nodemailer from "nodemailer";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 class Otp {
@@ -37,7 +37,13 @@ class Otp {
 				to: email,
 				subject: "Hello, OTP Verification",
 				text: "Your Otp is below",
-				html: `<b>${otp}</b>`,
+				html: `
+				<div>
+					<h1>This is your personal OTP code. Do not share with anyone else.</h1>
+					<h2>This code expires in 5 minutes</h2>
+					<b>${otp}</b>
+				</div>
+				`,
 			});
 
 			// after sending mail store otp and expiry date
@@ -61,7 +67,7 @@ class Otp {
 		}
 	}
 
-	async #verifyOtp(otp: string, email: string): Promise<boolean> {
+	async verifyOtp(otp: string, email: string): Promise<boolean> {
 		/*
 		 * Select the otp from the database using the user email
 		 * Make sure otp isnt expired
@@ -108,9 +114,11 @@ class Otp {
 		const { userEmail } = req.body;
 		const result = await this.sendOtp(userEmail);
 		if (result) {
-			return res.status(200).json({ success: true });
+			return res
+				.status(200)
+				.json({ success: true, message: "OTP sent successfully" });
 		}
-		res.status(500).json({ success: false });
+		return res.status(500).json({ success: false, message: "OTP send failed" });
 	};
 
 	verifyRequestHandler = async (
@@ -118,15 +126,20 @@ class Otp {
 		res: Response,
 	) => {
 		const { otp, userEmail } = req.body;
-		const result: boolean = await this.#verifyOtp(otp, userEmail);
+		const result: boolean = await this.verifyOtp(otp, userEmail);
 		if (result) {
-			const payload = { email: userEmail };
-			const token = jwt.sign(payload, `${process.env.ACCESS_TOKEN_SECRET}`, {
-				expiresIn: "30d",
+			sendAccessAndRefreshTokens(userEmail, res);
+			await prisma.users.update({
+				where: { email: userEmail },
+				data: { isVerified: true },
 			});
-			return res.status(200).json({ success: true, accessToken: token });
+			return res
+				.status(200)
+				.json({ success: true, message: "OTP verified successfully" });
 		}
-		res.status(401).json({ success: false });
+		return res
+			.status(401)
+			.json({ success: false, message: "OTP verification failed" });
 	};
 }
 

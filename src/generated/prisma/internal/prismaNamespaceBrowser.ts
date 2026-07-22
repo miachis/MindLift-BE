@@ -52,7 +52,11 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Otp: 'Otp',
-  Users: 'Users'
+  Users: 'Users',
+  RefreshTokens: 'RefreshTokens',
+  DailyReports: 'DailyReports',
+  WeeklyReports: 'WeeklyReports',
+  Activities: 'Activities'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,11 +90,53 @@ export const UsersScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
-  Password: 'Password',
   isVerified: 'isVerified'
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const RefreshTokensScalarFieldEnum = {
+  id: 'id',
+  refreshToken: 'refreshToken',
+  expiry: 'expiry',
+  email: 'email'
+} as const
+
+export type RefreshTokensScalarFieldEnum = (typeof RefreshTokensScalarFieldEnum)[keyof typeof RefreshTokensScalarFieldEnum]
+
+
+export const DailyReportsScalarFieldEnum = {
+  id: 'id',
+  body: 'body',
+  createdAt: 'createdAt',
+  authorId: 'authorId',
+  appResponse: 'appResponse'
+} as const
+
+export type DailyReportsScalarFieldEnum = (typeof DailyReportsScalarFieldEnum)[keyof typeof DailyReportsScalarFieldEnum]
+
+
+export const WeeklyReportsScalarFieldEnum = {
+  id: 'id',
+  body: 'body',
+  createdAt: 'createdAt',
+  authorId: 'authorId'
+} as const
+
+export type WeeklyReportsScalarFieldEnum = (typeof WeeklyReportsScalarFieldEnum)[keyof typeof WeeklyReportsScalarFieldEnum]
+
+
+export const ActivitiesScalarFieldEnum = {
+  id: 'id',
+  authorId: 'authorId',
+  body: 'body',
+  header: 'header',
+  date: 'date',
+  isDailyReport: 'isDailyReport'
+} as const
+
+export type ActivitiesScalarFieldEnum = (typeof ActivitiesScalarFieldEnum)[keyof typeof ActivitiesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -107,12 +153,4 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

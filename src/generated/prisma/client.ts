@@ -51,3 +51,23 @@ export type Otp = Prisma.OtpModel
  * 
  */
 export type Users = Prisma.UsersModel
+/**
+ * Model RefreshTokens
+ * 
+ */
+export type RefreshTokens = Prisma.RefreshTokensModel
+/**
+ * Model DailyReports
+ * 
+ */
+export type DailyReports = Prisma.DailyReportsModel
+/**
+ * Model WeeklyReports
+ * 
+ */
+export type WeeklyReports = Prisma.WeeklyReportsModel
+/**
+ * Model Activities
+ * 
+ */
+export type Activities = Prisma.ActivitiesModel

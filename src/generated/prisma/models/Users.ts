@@ -39,7 +39,6 @@ export type UsersMinAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   email: string | null
-  Password: string | null
   isVerified: boolean | null
 }
 
@@ -48,7 +47,6 @@ export type UsersMaxAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   email: string | null
-  Password: string | null
   isVerified: boolean | null
 }
 
@@ -57,7 +55,6 @@ export type UsersCountAggregateOutputType = {
   firstName: number
   lastName: number
   email: number
-  Password: number
   isVerified: number
   _all: number
 }
@@ -76,7 +73,6 @@ export type UsersMinAggregateInputType = {
   firstName?: true
   lastName?: true
   email?: true
-  Password?: true
   isVerified?: true
 }
 
@@ -85,7 +81,6 @@ export type UsersMaxAggregateInputType = {
   firstName?: true
   lastName?: true
   email?: true
-  Password?: true
   isVerified?: true
 }
 
@@ -94,7 +89,6 @@ export type UsersCountAggregateInputType = {
   firstName?: true
   lastName?: true
   email?: true
-  Password?: true
   isVerified?: true
   _all?: true
 }
@@ -190,7 +184,6 @@ export type UsersGroupByOutputType = {
   firstName: string
   lastName: string
   email: string
-  Password: string | null
   isVerified: boolean
   _count: UsersCountAggregateOutputType | null
   _avg: UsersAvgAggregateOutputType | null
@@ -222,8 +215,10 @@ export type UsersWhereInput = {
   firstName?: Prisma.StringFilter<"Users"> | string
   lastName?: Prisma.StringFilter<"Users"> | string
   email?: Prisma.StringFilter<"Users"> | string
-  Password?: Prisma.StringNullableFilter<"Users"> | string | null
   isVerified?: Prisma.BoolFilter<"Users"> | boolean
+  dailyReports?: Prisma.DailyReportsListRelationFilter
+  weeklyReports?: Prisma.WeeklyReportsListRelationFilter
+  activites?: Prisma.ActivitiesListRelationFilter
 }
 
 export type UsersOrderByWithRelationInput = {
@@ -231,8 +226,10 @@ export type UsersOrderByWithRelationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  Password?: Prisma.SortOrderInput | Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  dailyReports?: Prisma.DailyReportsOrderByRelationAggregateInput
+  weeklyReports?: Prisma.WeeklyReportsOrderByRelationAggregateInput
+  activites?: Prisma.ActivitiesOrderByRelationAggregateInput
 }
 
 export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +240,10 @@ export type UsersWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UsersWhereInput | Prisma.UsersWhereInput[]
   firstName?: Prisma.StringFilter<"Users"> | string
   lastName?: Prisma.StringFilter<"Users"> | string
-  Password?: Prisma.StringNullableFilter<"Users"> | string | null
   isVerified?: Prisma.BoolFilter<"Users"> | boolean
+  dailyReports?: Prisma.DailyReportsListRelationFilter
+  weeklyReports?: Prisma.WeeklyReportsListRelationFilter
+  activites?: Prisma.ActivitiesListRelationFilter
 }, "id" | "email">
 
 export type UsersOrderByWithAggregationInput = {
@@ -252,7 +251,6 @@ export type UsersOrderByWithAggregationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  Password?: Prisma.SortOrderInput | Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   _count?: Prisma.UsersCountOrderByAggregateInput
   _avg?: Prisma.UsersAvgOrderByAggregateInput
@@ -269,7 +267,6 @@ export type UsersScalarWhereWithAggregatesInput = {
   firstName?: Prisma.StringWithAggregatesFilter<"Users"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Users"> | string
   email?: Prisma.StringWithAggregatesFilter<"Users"> | string
-  Password?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   isVerified?: Prisma.BoolWithAggregatesFilter<"Users"> | boolean
 }
 
@@ -277,8 +274,10 @@ export type UsersCreateInput = {
   firstName: string
   lastName: string
   email: string
-  Password?: string | null
   isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsCreateNestedManyWithoutAuthorInput
+  weeklyReports?: Prisma.WeeklyReportsCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesCreateNestedManyWithoutAuthorInput
 }
 
 export type UsersUncheckedCreateInput = {
@@ -286,16 +285,20 @@ export type UsersUncheckedCreateInput = {
   firstName: string
   lastName: string
   email: string
-  Password?: string | null
   isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsUncheckedCreateNestedManyWithoutAuthorInput
+  weeklyReports?: Prisma.WeeklyReportsUncheckedCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UsersUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  Password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUpdateManyWithoutAuthorNestedInput
+  weeklyReports?: Prisma.WeeklyReportsUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUpdateManyWithoutAuthorNestedInput
 }
 
 export type UsersUncheckedUpdateInput = {
@@ -303,8 +306,10 @@ export type UsersUncheckedUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  Password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+  weeklyReports?: Prisma.WeeklyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UsersCreateManyInput = {
@@ -312,7 +317,6 @@ export type UsersCreateManyInput = {
   firstName: string
   lastName: string
   email: string
-  Password?: string | null
   isVerified?: boolean
 }
 
@@ -320,7 +324,6 @@ export type UsersUpdateManyMutationInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  Password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -329,7 +332,6 @@ export type UsersUncheckedUpdateManyInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  Password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -338,7 +340,6 @@ export type UsersCountOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  Password?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
 
@@ -351,7 +352,6 @@ export type UsersMaxOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  Password?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
 
@@ -360,7 +360,6 @@ export type UsersMinOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  Password?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
 }
 
@@ -368,14 +367,266 @@ export type UsersSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type UsersScalarRelationFilter = {
+  is?: Prisma.UsersWhereInput
+  isNot?: Prisma.UsersWhereInput
 }
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type UsersCreateNestedOneWithoutDailyReportsInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutDailyReportsInput, Prisma.UsersUncheckedCreateWithoutDailyReportsInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutDailyReportsInput
+  connect?: Prisma.UsersWhereUniqueInput
+}
+
+export type UsersUpdateOneRequiredWithoutDailyReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutDailyReportsInput, Prisma.UsersUncheckedCreateWithoutDailyReportsInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutDailyReportsInput
+  upsert?: Prisma.UsersUpsertWithoutDailyReportsInput
+  connect?: Prisma.UsersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsersUpdateToOneWithWhereWithoutDailyReportsInput, Prisma.UsersUpdateWithoutDailyReportsInput>, Prisma.UsersUncheckedUpdateWithoutDailyReportsInput>
+}
+
+export type UsersCreateNestedOneWithoutWeeklyReportsInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutWeeklyReportsInput, Prisma.UsersUncheckedCreateWithoutWeeklyReportsInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutWeeklyReportsInput
+  connect?: Prisma.UsersWhereUniqueInput
+}
+
+export type UsersUpdateOneRequiredWithoutWeeklyReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutWeeklyReportsInput, Prisma.UsersUncheckedCreateWithoutWeeklyReportsInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutWeeklyReportsInput
+  upsert?: Prisma.UsersUpsertWithoutWeeklyReportsInput
+  connect?: Prisma.UsersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsersUpdateToOneWithWhereWithoutWeeklyReportsInput, Prisma.UsersUpdateWithoutWeeklyReportsInput>, Prisma.UsersUncheckedUpdateWithoutWeeklyReportsInput>
+}
+
+export type UsersCreateNestedOneWithoutActivitesInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutActivitesInput, Prisma.UsersUncheckedCreateWithoutActivitesInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutActivitesInput
+  connect?: Prisma.UsersWhereUniqueInput
+}
+
+export type UsersUpdateOneRequiredWithoutActivitesNestedInput = {
+  create?: Prisma.XOR<Prisma.UsersCreateWithoutActivitesInput, Prisma.UsersUncheckedCreateWithoutActivitesInput>
+  connectOrCreate?: Prisma.UsersCreateOrConnectWithoutActivitesInput
+  upsert?: Prisma.UsersUpsertWithoutActivitesInput
+  connect?: Prisma.UsersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsersUpdateToOneWithWhereWithoutActivitesInput, Prisma.UsersUpdateWithoutActivitesInput>, Prisma.UsersUncheckedUpdateWithoutActivitesInput>
+}
+
+export type UsersCreateWithoutDailyReportsInput = {
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  weeklyReports?: Prisma.WeeklyReportsCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersUncheckedCreateWithoutDailyReportsInput = {
+  id?: number
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  weeklyReports?: Prisma.WeeklyReportsUncheckedCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersCreateOrConnectWithoutDailyReportsInput = {
+  where: Prisma.UsersWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsersCreateWithoutDailyReportsInput, Prisma.UsersUncheckedCreateWithoutDailyReportsInput>
+}
+
+export type UsersUpsertWithoutDailyReportsInput = {
+  update: Prisma.XOR<Prisma.UsersUpdateWithoutDailyReportsInput, Prisma.UsersUncheckedUpdateWithoutDailyReportsInput>
+  create: Prisma.XOR<Prisma.UsersCreateWithoutDailyReportsInput, Prisma.UsersUncheckedCreateWithoutDailyReportsInput>
+  where?: Prisma.UsersWhereInput
+}
+
+export type UsersUpdateToOneWithWhereWithoutDailyReportsInput = {
+  where?: Prisma.UsersWhereInput
+  data: Prisma.XOR<Prisma.UsersUpdateWithoutDailyReportsInput, Prisma.UsersUncheckedUpdateWithoutDailyReportsInput>
+}
+
+export type UsersUpdateWithoutDailyReportsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  weeklyReports?: Prisma.WeeklyReportsUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUpdateManyWithoutAuthorNestedInput
+}
+
+export type UsersUncheckedUpdateWithoutDailyReportsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  weeklyReports?: Prisma.WeeklyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UsersCreateWithoutWeeklyReportsInput = {
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersUncheckedCreateWithoutWeeklyReportsInput = {
+  id?: number
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsUncheckedCreateNestedManyWithoutAuthorInput
+  activites?: Prisma.ActivitiesUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersCreateOrConnectWithoutWeeklyReportsInput = {
+  where: Prisma.UsersWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsersCreateWithoutWeeklyReportsInput, Prisma.UsersUncheckedCreateWithoutWeeklyReportsInput>
+}
+
+export type UsersUpsertWithoutWeeklyReportsInput = {
+  update: Prisma.XOR<Prisma.UsersUpdateWithoutWeeklyReportsInput, Prisma.UsersUncheckedUpdateWithoutWeeklyReportsInput>
+  create: Prisma.XOR<Prisma.UsersCreateWithoutWeeklyReportsInput, Prisma.UsersUncheckedCreateWithoutWeeklyReportsInput>
+  where?: Prisma.UsersWhereInput
+}
+
+export type UsersUpdateToOneWithWhereWithoutWeeklyReportsInput = {
+  where?: Prisma.UsersWhereInput
+  data: Prisma.XOR<Prisma.UsersUpdateWithoutWeeklyReportsInput, Prisma.UsersUncheckedUpdateWithoutWeeklyReportsInput>
+}
+
+export type UsersUpdateWithoutWeeklyReportsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUpdateManyWithoutAuthorNestedInput
+}
+
+export type UsersUncheckedUpdateWithoutWeeklyReportsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+  activites?: Prisma.ActivitiesUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UsersCreateWithoutActivitesInput = {
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsCreateNestedManyWithoutAuthorInput
+  weeklyReports?: Prisma.WeeklyReportsCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersUncheckedCreateWithoutActivitesInput = {
+  id?: number
+  firstName: string
+  lastName: string
+  email: string
+  isVerified?: boolean
+  dailyReports?: Prisma.DailyReportsUncheckedCreateNestedManyWithoutAuthorInput
+  weeklyReports?: Prisma.WeeklyReportsUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UsersCreateOrConnectWithoutActivitesInput = {
+  where: Prisma.UsersWhereUniqueInput
+  create: Prisma.XOR<Prisma.UsersCreateWithoutActivitesInput, Prisma.UsersUncheckedCreateWithoutActivitesInput>
+}
+
+export type UsersUpsertWithoutActivitesInput = {
+  update: Prisma.XOR<Prisma.UsersUpdateWithoutActivitesInput, Prisma.UsersUncheckedUpdateWithoutActivitesInput>
+  create: Prisma.XOR<Prisma.UsersCreateWithoutActivitesInput, Prisma.UsersUncheckedCreateWithoutActivitesInput>
+  where?: Prisma.UsersWhereInput
+}
+
+export type UsersUpdateToOneWithWhereWithoutActivitesInput = {
+  where?: Prisma.UsersWhereInput
+  data: Prisma.XOR<Prisma.UsersUpdateWithoutActivitesInput, Prisma.UsersUncheckedUpdateWithoutActivitesInput>
+}
+
+export type UsersUpdateWithoutActivitesInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUpdateManyWithoutAuthorNestedInput
+  weeklyReports?: Prisma.WeeklyReportsUpdateManyWithoutAuthorNestedInput
+}
+
+export type UsersUncheckedUpdateWithoutActivitesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dailyReports?: Prisma.DailyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+  weeklyReports?: Prisma.WeeklyReportsUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+
+/**
+ * Count Type UsersCountOutputType
+ */
+
+export type UsersCountOutputType = {
+  dailyReports: number
+  weeklyReports: number
+  activites: number
+}
+
+export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  dailyReports?: boolean | UsersCountOutputTypeCountDailyReportsArgs
+  weeklyReports?: boolean | UsersCountOutputTypeCountWeeklyReportsArgs
+  activites?: boolean | UsersCountOutputTypeCountActivitesArgs
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UsersCountOutputType
+   */
+  select?: Prisma.UsersCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountDailyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DailyReportsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountWeeklyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeeklyReportsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountActivitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivitiesWhereInput
+}
 
 
 export type UsersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -383,8 +634,11 @@ export type UsersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   firstName?: boolean
   lastName?: boolean
   email?: boolean
-  Password?: boolean
   isVerified?: boolean
+  dailyReports?: boolean | Prisma.Users$dailyReportsArgs<ExtArgs>
+  weeklyReports?: boolean | Prisma.Users$weeklyReportsArgs<ExtArgs>
+  activites?: boolean | Prisma.Users$activitesArgs<ExtArgs>
+  _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
 export type UsersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -392,7 +646,6 @@ export type UsersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   firstName?: boolean
   lastName?: boolean
   email?: boolean
-  Password?: boolean
   isVerified?: boolean
 }, ExtArgs["result"]["users"]>
 
@@ -401,7 +654,6 @@ export type UsersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   firstName?: boolean
   lastName?: boolean
   email?: boolean
-  Password?: boolean
   isVerified?: boolean
 }, ExtArgs["result"]["users"]>
 
@@ -410,21 +662,31 @@ export type UsersSelectScalar = {
   firstName?: boolean
   lastName?: boolean
   email?: boolean
-  Password?: boolean
   isVerified?: boolean
 }
 
-export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "Password" | "isVerified", ExtArgs["result"]["users"]>
+export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "isVerified", ExtArgs["result"]["users"]>
+export type UsersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  dailyReports?: boolean | Prisma.Users$dailyReportsArgs<ExtArgs>
+  weeklyReports?: boolean | Prisma.Users$weeklyReportsArgs<ExtArgs>
+  activites?: boolean | Prisma.Users$activitesArgs<ExtArgs>
+  _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UsersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UsersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Users"
-  objects: {}
+  objects: {
+    dailyReports: Prisma.$DailyReportsPayload<ExtArgs>[]
+    weeklyReports: Prisma.$WeeklyReportsPayload<ExtArgs>[]
+    activites: Prisma.$ActivitiesPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     firstName: string
     lastName: string
     email: string
-    Password: string | null
     isVerified: boolean
   }, ExtArgs["result"]["users"]>
   composites: {}
@@ -820,6 +1082,9 @@ readonly fields: UsersFieldRefs;
  */
 export interface Prisma__UsersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  dailyReports<T extends Prisma.Users$dailyReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Users$dailyReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DailyReportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weeklyReports<T extends Prisma.Users$weeklyReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Users$weeklyReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyReportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activites<T extends Prisma.Users$activitesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Users$activitesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -853,7 +1118,6 @@ export interface UsersFieldRefs {
   readonly firstName: Prisma.FieldRef<"Users", 'String'>
   readonly lastName: Prisma.FieldRef<"Users", 'String'>
   readonly email: Prisma.FieldRef<"Users", 'String'>
-  readonly Password: Prisma.FieldRef<"Users", 'String'>
   readonly isVerified: Prisma.FieldRef<"Users", 'Boolean'>
 }
     
@@ -871,6 +1135,10 @@ export type UsersFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Users
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -890,6 +1158,10 @@ export type UsersFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  /**
    * Filter, which Users to fetch.
    */
   where: Prisma.UsersWhereUniqueInput
@@ -907,6 +1179,10 @@ export type UsersFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Users
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -956,6 +1232,10 @@ export type UsersFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  /**
    * Filter, which Users to fetch.
    */
   where?: Prisma.UsersWhereInput
@@ -1003,6 +1283,10 @@ export type UsersFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Users
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -1052,6 +1336,10 @@ export type UsersCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  /**
    * The data needed to create a Users.
    */
   data: Prisma.XOR<Prisma.UsersCreateInput, Prisma.UsersUncheckedCreateInput>
@@ -1099,6 +1387,10 @@ export type UsersUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Users
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
   /**
    * The data needed to update a Users.
    */
@@ -1166,6 +1458,10 @@ export type UsersUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  /**
    * The filter to search for the Users to update in case it exists.
    */
   where: Prisma.UsersWhereUniqueInput
@@ -1192,6 +1488,10 @@ export type UsersDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
+  /**
    * Filter which Users to delete.
    */
   where: Prisma.UsersWhereUniqueInput
@@ -1212,6 +1512,78 @@ export type UsersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Users.dailyReports
+ */
+export type Users$dailyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DailyReports
+   */
+  select?: Prisma.DailyReportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DailyReports
+   */
+  omit?: Prisma.DailyReportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DailyReportsInclude<ExtArgs> | null
+  where?: Prisma.DailyReportsWhereInput
+  orderBy?: Prisma.DailyReportsOrderByWithRelationInput | Prisma.DailyReportsOrderByWithRelationInput[]
+  cursor?: Prisma.DailyReportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DailyReportsScalarFieldEnum | Prisma.DailyReportsScalarFieldEnum[]
+}
+
+/**
+ * Users.weeklyReports
+ */
+export type Users$weeklyReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeeklyReports
+   */
+  select?: Prisma.WeeklyReportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeeklyReports
+   */
+  omit?: Prisma.WeeklyReportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeeklyReportsInclude<ExtArgs> | null
+  where?: Prisma.WeeklyReportsWhereInput
+  orderBy?: Prisma.WeeklyReportsOrderByWithRelationInput | Prisma.WeeklyReportsOrderByWithRelationInput[]
+  cursor?: Prisma.WeeklyReportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeeklyReportsScalarFieldEnum | Prisma.WeeklyReportsScalarFieldEnum[]
+}
+
+/**
+ * Users.activites
+ */
+export type Users$activitesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activities
+   */
+  select?: Prisma.ActivitiesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activities
+   */
+  omit?: Prisma.ActivitiesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivitiesInclude<ExtArgs> | null
+  where?: Prisma.ActivitiesWhereInput
+  orderBy?: Prisma.ActivitiesOrderByWithRelationInput | Prisma.ActivitiesOrderByWithRelationInput[]
+  cursor?: Prisma.ActivitiesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivitiesScalarFieldEnum | Prisma.ActivitiesScalarFieldEnum[]
+}
+
+/**
  * Users without action
  */
 export type UsersDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1223,4 +1595,8 @@ export type UsersDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Users
    */
   omit?: Prisma.UsersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsersInclude<ExtArgs> | null
 }

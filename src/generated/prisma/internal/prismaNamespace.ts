@@ -385,7 +385,11 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Otp: 'Otp',
-  Users: 'Users'
+  Users: 'Users',
+  RefreshTokens: 'RefreshTokens',
+  DailyReports: 'DailyReports',
+  WeeklyReports: 'WeeklyReports',
+  Activities: 'Activities'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "otp" | "users"
+    modelProps: "otp" | "users" | "refreshTokens" | "dailyReports" | "weeklyReports" | "activities"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +557,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RefreshTokens: {
+      payload: Prisma.$RefreshTokensPayload<ExtArgs>
+      fields: Prisma.RefreshTokensFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RefreshTokensFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RefreshTokensFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        findFirst: {
+          args: Prisma.RefreshTokensFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RefreshTokensFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        findMany: {
+          args: Prisma.RefreshTokensFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>[]
+        }
+        create: {
+          args: Prisma.RefreshTokensCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        createMany: {
+          args: Prisma.RefreshTokensCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RefreshTokensCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>[]
+        }
+        delete: {
+          args: Prisma.RefreshTokensDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        update: {
+          args: Prisma.RefreshTokensUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        deleteMany: {
+          args: Prisma.RefreshTokensDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RefreshTokensUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RefreshTokensUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>[]
+        }
+        upsert: {
+          args: Prisma.RefreshTokensUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokensPayload>
+        }
+        aggregate: {
+          args: Prisma.RefreshTokensAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRefreshTokens>
+        }
+        groupBy: {
+          args: Prisma.RefreshTokensGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RefreshTokensGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RefreshTokensCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RefreshTokensCountAggregateOutputType> | number
+        }
+      }
+    }
+    DailyReports: {
+      payload: Prisma.$DailyReportsPayload<ExtArgs>
+      fields: Prisma.DailyReportsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DailyReportsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DailyReportsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        findFirst: {
+          args: Prisma.DailyReportsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DailyReportsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        findMany: {
+          args: Prisma.DailyReportsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>[]
+        }
+        create: {
+          args: Prisma.DailyReportsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        createMany: {
+          args: Prisma.DailyReportsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DailyReportsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>[]
+        }
+        delete: {
+          args: Prisma.DailyReportsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        update: {
+          args: Prisma.DailyReportsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        deleteMany: {
+          args: Prisma.DailyReportsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DailyReportsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DailyReportsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>[]
+        }
+        upsert: {
+          args: Prisma.DailyReportsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DailyReportsPayload>
+        }
+        aggregate: {
+          args: Prisma.DailyReportsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDailyReports>
+        }
+        groupBy: {
+          args: Prisma.DailyReportsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DailyReportsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DailyReportsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DailyReportsCountAggregateOutputType> | number
+        }
+      }
+    }
+    WeeklyReports: {
+      payload: Prisma.$WeeklyReportsPayload<ExtArgs>
+      fields: Prisma.WeeklyReportsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WeeklyReportsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WeeklyReportsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        findFirst: {
+          args: Prisma.WeeklyReportsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WeeklyReportsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        findMany: {
+          args: Prisma.WeeklyReportsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>[]
+        }
+        create: {
+          args: Prisma.WeeklyReportsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        createMany: {
+          args: Prisma.WeeklyReportsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WeeklyReportsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>[]
+        }
+        delete: {
+          args: Prisma.WeeklyReportsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        update: {
+          args: Prisma.WeeklyReportsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        deleteMany: {
+          args: Prisma.WeeklyReportsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WeeklyReportsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WeeklyReportsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>[]
+        }
+        upsert: {
+          args: Prisma.WeeklyReportsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeeklyReportsPayload>
+        }
+        aggregate: {
+          args: Prisma.WeeklyReportsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWeeklyReports>
+        }
+        groupBy: {
+          args: Prisma.WeeklyReportsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeeklyReportsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WeeklyReportsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeeklyReportsCountAggregateOutputType> | number
+        }
+      }
+    }
+    Activities: {
+      payload: Prisma.$ActivitiesPayload<ExtArgs>
+      fields: Prisma.ActivitiesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ActivitiesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ActivitiesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        findFirst: {
+          args: Prisma.ActivitiesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ActivitiesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        findMany: {
+          args: Prisma.ActivitiesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>[]
+        }
+        create: {
+          args: Prisma.ActivitiesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        createMany: {
+          args: Prisma.ActivitiesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ActivitiesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>[]
+        }
+        delete: {
+          args: Prisma.ActivitiesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        update: {
+          args: Prisma.ActivitiesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        deleteMany: {
+          args: Prisma.ActivitiesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ActivitiesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ActivitiesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>[]
+        }
+        upsert: {
+          args: Prisma.ActivitiesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivitiesPayload>
+        }
+        aggregate: {
+          args: Prisma.ActivitiesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateActivities>
+        }
+        groupBy: {
+          args: Prisma.ActivitiesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ActivitiesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ActivitiesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ActivitiesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -607,11 +907,53 @@ export const UsersScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
-  Password: 'Password',
   isVerified: 'isVerified'
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const RefreshTokensScalarFieldEnum = {
+  id: 'id',
+  refreshToken: 'refreshToken',
+  expiry: 'expiry',
+  email: 'email'
+} as const
+
+export type RefreshTokensScalarFieldEnum = (typeof RefreshTokensScalarFieldEnum)[keyof typeof RefreshTokensScalarFieldEnum]
+
+
+export const DailyReportsScalarFieldEnum = {
+  id: 'id',
+  body: 'body',
+  createdAt: 'createdAt',
+  authorId: 'authorId',
+  appResponse: 'appResponse'
+} as const
+
+export type DailyReportsScalarFieldEnum = (typeof DailyReportsScalarFieldEnum)[keyof typeof DailyReportsScalarFieldEnum]
+
+
+export const WeeklyReportsScalarFieldEnum = {
+  id: 'id',
+  body: 'body',
+  createdAt: 'createdAt',
+  authorId: 'authorId'
+} as const
+
+export type WeeklyReportsScalarFieldEnum = (typeof WeeklyReportsScalarFieldEnum)[keyof typeof WeeklyReportsScalarFieldEnum]
+
+
+export const ActivitiesScalarFieldEnum = {
+  id: 'id',
+  authorId: 'authorId',
+  body: 'body',
+  header: 'header',
+  date: 'date',
+  isDailyReport: 'isDailyReport'
+} as const
+
+export type ActivitiesScalarFieldEnum = (typeof ActivitiesScalarFieldEnum)[keyof typeof ActivitiesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -628,14 +970,6 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -690,6 +1024,20 @@ export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -818,6 +1166,10 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   otp?: Prisma.OtpOmit
   users?: Prisma.UsersOmit
+  refreshTokens?: Prisma.RefreshTokensOmit
+  dailyReports?: Prisma.DailyReportsOmit
+  weeklyReports?: Prisma.WeeklyReportsOmit
+  activities?: Prisma.ActivitiesOmit
 }
 
 /* Types for Logging */

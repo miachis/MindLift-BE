@@ -10,4 +10,8 @@
  */
 export type * from './models/Otp.js'
 export type * from './models/Users.js'
+export type * from './models/RefreshTokens.js'
+export type * from './models/DailyReports.js'
+export type * from './models/WeeklyReports.js'
+export type * from './models/Activities.js'
 export type * from './commonInputTypes.js'
