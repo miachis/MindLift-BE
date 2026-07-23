@@ -14,6 +14,7 @@ Features currently available are:
 
 ## Local Development
 
+Navigate to src
 Create a file and rename it `.env`, this file holds all the information the server needs.
 
 Inside the `.env`, fill in the following information:
