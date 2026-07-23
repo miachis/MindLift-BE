@@ -26,7 +26,7 @@ reportRouter.get(
 
 reportRouter.post(
 	"/weekly",
-	// accessTokenValidator,
+	accessTokenValidator,
 	weeklyReportController.createReport,
 );
 

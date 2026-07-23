@@ -24,14 +24,14 @@ export default async function sendAccessAndRefreshTokens(
 	res.cookie("accessToken", accessToken, {
 		httpOnly: true,
 		sameSite: "strict",
-		secure: false, //change the true before pushing to prod
+		secure: true, //change the true before pushing to prod
 		path: "/",
 	});
 
 	res.cookie("refreshToken", refreshToken, {
 		httpOnly: true,
 		sameSite: "strict",
-		secure: false, //change to true before pushing to prod
+		secure: true, //change to true before pushing to prod
 		path: "/refresh",
 	});
 
