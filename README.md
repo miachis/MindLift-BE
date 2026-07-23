@@ -48,14 +48,14 @@ After all that is done, make sure you're in the root directory, then run
 ```
 npm install
 npx tsc
-node dist/app.js
+npm start
 ```
 
 `npm install` installs all the required dependencies.
 
 `npx tsc` compiles all the typescript files to vanilla javascript.
 
-`node dist/app.js` starts the server.
+`npm start` starts the server.
 
 Navigate to [app.ts](src/app.ts) and set the `origin` property of
 
